@@ -19,6 +19,8 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     env_file:
       - .env-hosting
+    volumes:
+      - ./local_settings.py:/local_settings.py
 
   db:
     image: postgres
