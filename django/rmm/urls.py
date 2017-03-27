@@ -15,8 +15,20 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from rest_framework import routers
+
+import apps.nodes.api
+
+def register_api(router, routes):
+    for route in routes:
+        router.register(route[0], route[1])
+
+router = routers.DefaultRouter()
+register_api(router, apps.nodes.api.routes)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r"^nodes/", include("apps.nodes.urls")),
+    url(r'^api/', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls',
+                               namespace='rest_framework'))
 ]

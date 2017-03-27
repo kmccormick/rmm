@@ -1,5 +1,7 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from rest_framework import viewsets
+from . import models, serializers
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the nodes index.")
+
+class NodeViewSet(viewsets.ModelViewSet):
+    queryset = models.Node.objects.all()
+    serializer_class = serializers.NodeSerializer
