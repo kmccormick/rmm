@@ -35,13 +35,17 @@ class Node(models.Model):
 
     hostname = models.CharField(max_length=100)
     domain = models.CharField(max_length=100)
-    fqdn = models.CharField(max_length=100)
     hwtype = models.CharField(max_length=2, choices=HW_TYPES, default=PHYSICAL,
                              blank=True, null=True)
     ostype = models.CharField(max_length=3, choices=OS_TYPES, blank=True,
                               null=True)
     os = models.CharField(max_length=100, blank=True, null=True)
-    nodetype = models.ForeignKey('NodeType', null=True, on_delete=models.CASCADE)
+    nodetype = models.ForeignKey('NodeType', null=True,
+                                 on_delete=models.CASCADE)
+
+    @property
+    def fqdn(self):
+        return '%s.%s' % (self.hostname, self.domain)
 
     def __str__(self):
         return self.fqdn
