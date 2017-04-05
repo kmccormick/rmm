@@ -48,7 +48,8 @@ class Node(models.Model):
 
 
 class NodeIP(models.Model):
-    node = models.ForeignKey(Node, on_delete=models.CASCADE)
+    node = models.ForeignKey(Node, related_name='ipaddrs',
+                             on_delete=models.CASCADE)
     ipaddr = models.GenericIPAddressField()
 
     def __str__(self):
@@ -56,7 +57,8 @@ class NodeIP(models.Model):
 
 
 class NodeMAC(models.Model):
-    node = models.ForeignKey(Node, on_delete=models.CASCADE)
+    node = models.ForeignKey(Node, related_name='macaddrs',
+                             on_delete=models.CASCADE)
     macaddr = MACAddressField(integer=False)
 
     def __str__(self):
