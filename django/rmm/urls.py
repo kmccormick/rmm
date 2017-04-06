@@ -18,6 +18,7 @@ from django.contrib import admin
 from rest_framework import routers
 
 import apps.nodes.api
+import apps.sites.api
 
 def register_api(router, routes):
     for route in routes:
@@ -25,6 +26,7 @@ def register_api(router, routes):
 
 router = routers.DefaultRouter()
 register_api(router, apps.nodes.api.routes)
+register_api(router, apps.sites.api.routes)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

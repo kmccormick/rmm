@@ -10,8 +10,13 @@ class InlineNodeMAC(admin.TabularInline):
     model = NodeMAC
 
 
+class InlineNodeSite(admin.TabularInline):
+    model = NodeSite
+
+
 class NodeAdmin(admin.ModelAdmin):
     inlines = [
+        InlineNodeSite,
         InlineNodeIP,
         InlineNodeMAC,
     ]
