@@ -12,7 +12,7 @@ class Site(models.Model):
     # build the full_name field recursively
     def _get_full_name(self):
         if self.parent:
-            return '%s / %s' % (self.parent, self.name)
+            return '{parent} / {me}'.format(parent=self.parent, me=self.name)
         return self.name
 
     # when saving, update the full_name field on ourself and all children

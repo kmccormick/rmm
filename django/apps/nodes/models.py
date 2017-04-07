@@ -52,7 +52,7 @@ class Node(models.Model):
 
     @property
     def fqdn(self):
-        return '%s.%s' % (self.hostname, self.domain)
+        return '{host}.{domain}'.format(host=self.hostname, domain=self.domain)
 
     def __str__(self):
         return self.fqdn
